@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "ir.tehranshomal.samarium"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -66,4 +66,6 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("com.google.accompanist:accompanist-permissions:0.33.1-alpha")
+
 }
