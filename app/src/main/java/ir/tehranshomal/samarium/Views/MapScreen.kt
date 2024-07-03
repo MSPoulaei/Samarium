@@ -41,7 +41,9 @@ fun MapScreen(
 
         map.setTileSource(TileSourceFactory.MAPNIK)
         map.controller.setZoom(5.0)
-        map.controller.setCenter(GeoPoint(0.0, 0.0))
+        var last=points.lastOrNull()
+        if (last==null) last=Point()
+        map.controller.setCenter(GeoPoint(last.latitude, last.longitude))
         map.setMultiTouchControls(true)
         // Add my location overlay
         val myLocationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(context), map)
@@ -71,8 +73,6 @@ fun MapScreen(
             Handler(Looper.getMainLooper()).postDelayed({
                 // Center on my location
                 // Your Code
-                var last=points.lastOrNull()
-                if (last==null) last=Point()
                 map.controller.animateTo(GeoPoint(last.latitude,last.longitude))
             }, 1000)
         }
