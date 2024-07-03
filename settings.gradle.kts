@@ -3,6 +3,9 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+//        maven {
+//            url = uri("https://maven.emad.dev/repository/maven-public/")
+//        }
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +13,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+//        maven {
+//              url = uri("https://maven.emad.dev/repository/maven-public/")
+//        }
     }
 }
 
