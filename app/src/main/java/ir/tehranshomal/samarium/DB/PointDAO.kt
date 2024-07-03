@@ -25,4 +25,7 @@ interface PointDAO {
     @Delete
     fun delete(point: Point)
 
+    @Query("DELETE FROM point")
+    fun deleteAll()
+
 }

@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Point(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var Id : Int =0,
 
     @ColumnInfo(name = "cell_id")

@@ -61,6 +61,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("com.google.accompanist:accompanist-permissions:0.33.1-alpha")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     val room_version = "2.6.1"
 
     implementation("androidx.room:room-runtime:$room_version")
@@ -70,6 +71,12 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     // To use Kotlin Symbol Processing (KSP)
 //    ksp("androidx.room:room-compiler:$room_version")
+
+    implementation("org.osmdroid:osmdroid-android:6.1.10")
+//    implementation("androidx.compose.ui:ui:1.0.0")
+//    implementation("androidx.compose.material:material:1.0.0")
+//    implementation("androidx.compose.ui:ui-tooling:1.0.0")
+//    implementation("androidx.activity:activity-compose:1.3.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
