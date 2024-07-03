@@ -77,7 +77,7 @@ fun SettingsScreen(navController: NavController) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(25.dp))
 
             Button(
                 onClick = { showDeleteConfirmation = true },
