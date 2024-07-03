@@ -8,9 +8,9 @@ class DbHelper {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java, "SamariumDB"
-        ).build()
+        ).allowMainThreadQueries().build()
     }
     fun getDAO(db: AppDatabase): PointDAO {
-        return db.userDao()
+        return db.pointDAO()
     }
 }

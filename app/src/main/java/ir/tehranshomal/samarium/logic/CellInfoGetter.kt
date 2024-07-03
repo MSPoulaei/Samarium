@@ -15,7 +15,6 @@ import android.telephony.TelephonyManager
 import androidx.core.app.ActivityCompat
 import ir.tehranshomal.samarium.model.Point
 
-class CellInfoGetter {
 
     fun getServingCellParameters(context: Context): Point? {
         val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
@@ -333,4 +332,3 @@ class CellInfoGetter {
         }
         throw RuntimeException("New type of network")
     }
-}
