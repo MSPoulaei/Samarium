@@ -1,4 +1,4 @@
-package ir.tehranshomal.samarium.logic
+package ir.tehranshomal.samarium.Views
 
 import android.Manifest
 import android.content.Context
@@ -28,7 +28,6 @@ import androidx.lifecycle.LifecycleEventObserver
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
-import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable

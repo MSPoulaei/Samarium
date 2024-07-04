@@ -1,4 +1,4 @@
-package ir.tehranshomal.samarium.logic
+package ir.tehranshomal.samarium.Services
 
 import android.Manifest
 import android.content.Context
@@ -54,7 +54,6 @@ import ir.tehranshomal.samarium.model.Point
                     point.MNC=cellIdentityGsm.mnc.toString()
                     point.PLMNID=point.MCC+point.MNC
                     point.signalStrength=cellSignalStrengthGsm.dbm
-                    //TODO: quality gsm
                     point.signalQuality=cellSignalStrengthGsm.level
                 }
                 is CellInfoCdma -> {
@@ -115,7 +114,6 @@ import ir.tehranshomal.samarium.model.Point
                             is CellInfoNr -> {
                                 val cellIdentityNr = info.cellIdentity
                                 val cellSignalStrengthNr = info.cellSignalStrength
-//                                point.cellId=
 
 //                                point.LAC=cellIdentityNr.tac
 //                                point.MCC=cellIdentityNr.mcc.toString()
@@ -163,153 +161,11 @@ import ir.tehranshomal.samarium.model.Point
 
             return point
         }
-//        return cellInfo
         return null
     }
 
-    fun getServingCellParametersString(context: Context): String {
-        val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // Request permissions if not granted
-            return "nadariiii"
-        }
-
-        val cellInfo: List<CellInfo>? = telephonyManager.allCellInfo
-        var result="${readNetworkType(telephonyManager.networkType)}\n" +
-                "initee ${cellInfo?.count()}\n"
-        result+="networkOperatorName:${telephonyManager.networkOperatorName}\n"
-        result+="plmnid:${telephonyManager.simOperator}\n"
-        result+="networkOperator:${telephonyManager.networkOperator}\n"
-        cellInfo?.forEach { info ->
-            if (!info.isRegistered) return@forEach
-            when (info) {
-                is CellInfoGsm -> {
-
-                    val cellIdentityGsm = info.cellIdentity
-                    val cellSignalStrengthGsm = info.cellSignalStrength
-                    println("GSM Cell:\n")
-                    result+="GSM Cell:\n"
-                    println("CID: ${cellIdentityGsm.cid}\n")
-                    result+="CID: ${cellIdentityGsm.cid}\n"
-                    println("LAC: ${cellIdentityGsm.lac}\n")
-                    result+="LAC: ${cellIdentityGsm.lac}\n"
-                    println("MCC: ${cellIdentityGsm.mcc}\n")
-                    result+="MCC: ${cellIdentityGsm.mcc}\n"
-                    println("MNC: ${cellIdentityGsm.mnc}\n")
-                    result+="MNC: ${cellIdentityGsm.mnc}\n"
-                    println("Signal Strength: ${cellSignalStrengthGsm.dbm} dBm\n")
-                    result+="Signal Strength: ${cellSignalStrengthGsm.dbm} dBm\n"
-                }
-                is CellInfoLte -> {
-                    val cellIdentityLte = info.cellIdentity
-
-                    val cellSignalStrengthLte = info.cellSignalStrength
-                    println("LTE Cell:")
-                    result+="LTE Cell:"
-                    println("CI: ${cellIdentityLte.ci}\n")
-                    result+="CI: ${cellIdentityLte.ci}\n"
-                    println("TAC: ${cellIdentityLte.tac}\n")
-                    result+="TAC: ${cellIdentityLte.tac}\n"
-                    println("MCC: ${cellIdentityLte.mcc}\n")
-                    result+="MCC: ${cellIdentityLte.mcc}\n"
-                    println("MNC: ${cellIdentityLte.mnc}\n")
-                    result+="MNC: ${cellIdentityLte.mnc}\n"
-                    println("PCI: ${cellIdentityLte.pci}\n")
-                    result+="PCI: ${cellIdentityLte.pci}\n"
-                    println("Signal Strength: ${cellSignalStrengthLte.dbm} dBm\n")
-                    result+="Signal Strength: ${cellSignalStrengthLte.dbm} dBm\n"
-                }
-                is CellInfoWcdma -> {
-                    val cellIdentityWcdma = info.cellIdentity
-                    val cellSignalStrengthWcdma = info.cellSignalStrength
-                    println("WCDMA Cell:")
-                    result+="WCDMA Cell:"
-                    println("CID: ${cellIdentityWcdma.cid}\n")
-                    result+=("CID: ${cellIdentityWcdma.cid}\n")
-                    println("LAC: ${cellIdentityWcdma.lac}\n")
-                    result+=("LAC: ${cellIdentityWcdma.lac}\n")
-                    println("MCC: ${cellIdentityWcdma.mcc}\n")
-                    result+=("MCC: ${cellIdentityWcdma.mcc}\n")
-                    println("MNC: ${cellIdentityWcdma.mnc}\n")
-                    result+=("MNC: ${cellIdentityWcdma.mnc}\n")
-                    println("PSC: ${cellIdentityWcdma.psc}\n")
-                    result+=("PSC: ${cellIdentityWcdma.psc}\n")
-                    println("Signal Strength: ${cellSignalStrengthWcdma.dbm} dBm\n")
-                    result+=("Signal Strength: ${cellSignalStrengthWcdma.dbm} dBm\n")
-                }
-                // Add more cases for other cell types if needed
-
-                // For future compatibility or unknown types
-                else -> {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-                        when (info) {
-                            is CellInfoNr -> {
-                                val cellIdentityNr = info.cellIdentity
-                                val cellSignalStrengthNr = info.cellSignalStrength
-                                println("NR (5G) Cell:")
-                                result+=("NR (5G) Cell:\n")
-//                            println("NCI: ${cellIdentityNr.nci}\n")
-//                            result+=("NCI: ${cellIdentityNr.nci}\n")
-//                            println("TAC: ${cellIdentityNr.tac}")
-//                            result+=("TAC: ${cellIdentityNr.tac}")
-//                            println("MCC: ${cellIdentityNr.mcc}")
-//                            result+=("MCC: ${cellIdentityNr.mcc}")
-//                            println("MNC: ${cellIdentityNr.mnc}")
-//                            result+=("MNC: ${cellIdentityNr.mnc}")
-//                            println("PCI: ${cellIdentityNr.pci}")
-//                            result+=("PCI: ${cellIdentityNr.pci}")
-                                println("Signal Strength: ${cellSignalStrengthNr.dbm} dBm")
-                                result+=("Signal Strength: ${cellSignalStrengthNr.dbm} dBm\n")
-                            }
-                            is CellInfoTdscdma -> {
-                                val cellIdentityTdscdma = info.cellIdentity
-                                val cellSignalStrengthTdscdma = info.cellSignalStrength
-                                println("TD-SCDMA Cell:")
-                                result+=("TD-SCDMA Cell:")
-                                println("CID: ${cellIdentityTdscdma.cid}\n")
-                                result+=("CID: ${cellIdentityTdscdma.cid}\n")
-                                println("LAC: ${cellIdentityTdscdma.lac}\n")
-                                result+=("LAC: ${cellIdentityTdscdma.lac}\n")
-//                            println("MCC: ${cellIdentityTdscdma.mcc}\n")
-//                            println("MNC: ${cellIdentityTdscdma.mnc}\n")
-                                println("CPID: ${cellIdentityTdscdma.cpid}\n")
-                                result+=("CPID: ${cellIdentityTdscdma.cpid}\n")
-                                println("Signal Strength: ${cellSignalStrengthTdscdma.dbm} dBm\n")
-                                result+=("Signal Strength: ${cellSignalStrengthTdscdma.dbm} dBm\n")
-                            }
-
-                        }
-                    }
-                    println("Unknown or Unsupported Cell Type:")
-                    result+=("Unknown or Unsupported Cell Type:")
-                    println("Cell Type: ${info.javaClass.simpleName}\n")
-                    result+=("Cell Type: ${info.javaClass.simpleName}\n")
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        println("Cell Identity: ${info.cellIdentity}\n")
-                        result+=("Cell Identity: ${info.cellIdentity}\n")
-                        println("Signal Strength: ${info.cellSignalStrength}\n")
-                        result+=("Signal Strength: ${info.cellSignalStrength}\n")
-                    }
-                }
-            }
-
-            // Common information for all cell types
-            result+=("Registered: ${info.isRegistered}\n")
-            result+=("Timestamp: ${info.timeStamp}\n")
-            result+=("-------------------------\n")
-
-        }
-        return result
-//        return cellInfo
-    }
-
-
-    private fun readNetworkType(networkType: Int): String {
+private fun readNetworkType(networkType: Int): String {
         when (networkType) {
             TelephonyManager.NETWORK_TYPE_EDGE -> return "2G EDGE"
             TelephonyManager.NETWORK_TYPE_GPRS -> return "2G GPRS"

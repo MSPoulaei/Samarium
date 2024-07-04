@@ -1,4 +1,4 @@
-package ir.tehranshomal.samarium.logic
+package ir.tehranshomal.samarium.Services
 
 import android.content.Context
 import android.content.SharedPreferences

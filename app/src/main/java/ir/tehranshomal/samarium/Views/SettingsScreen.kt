@@ -12,7 +12,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ir.tehranshomal.samarium.DB.DbHelper
-import ir.tehranshomal.samarium.logic.PreferenceManager
+import ir.tehranshomal.samarium.Services.PreferenceManager
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

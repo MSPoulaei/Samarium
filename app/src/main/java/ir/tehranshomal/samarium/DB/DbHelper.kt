@@ -10,7 +10,4 @@ class DbHelper {
             AppDatabase::class.java, "SamariumDB"
         ).allowMainThreadQueries().build()
     }
-    fun getDAO(db: AppDatabase): PointDAO {
-        return db.pointDAO()
-    }
 }
