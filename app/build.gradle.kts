@@ -87,4 +87,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     implementation ("com.google.android.gms:play-services-location:21.3.0")
+    // required package for coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
 }
