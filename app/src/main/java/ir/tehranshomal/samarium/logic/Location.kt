@@ -1,4 +1,4 @@
-package ir.tehranshomal.samarium.model
+package ir.tehranshomal.samarium.logic
 
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
