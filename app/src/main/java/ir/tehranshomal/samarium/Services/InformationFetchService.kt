@@ -10,17 +10,23 @@ import kotlinx.coroutines.delay
 suspend fun startFetchingInfo(
     timeInterval: Int,
     context: Context,
-    location: Location?,
     points: SnapshotStateList<Point>,
     pointsDAO: PointDAO,
-    unknownPoints:MutableList<Point>
+    unknownPoints: MutableList<Point>,
+    locationService: LocationService
 ) {
+    var location:Location?=null
     while (true){
+        locationService.getLastLocation().addOnSuccessListener {
+            if (it != null){
+                location = it
+            }
+        }
         val newPoint= getServingCellParameters(context)
         if(newPoint==null) {}
         else {
             if (location != null) {
-                if (points.isNotEmpty() && points[points.count()-1].timestamp==location.time){
+                if (points.isNotEmpty() && points[points.count()-1].timestamp==location!!.time){
                     unknownPoints.add(newPoint)
                 }
                 else{
@@ -29,8 +35,8 @@ suspend fun startFetchingInfo(
                         val lat_start=point_start.latitude
                         val long_start=point_start.longitude
 
-                        val lat_end=location.latitude
-                        val long_end=location.longitude
+                        val lat_end=location!!.latitude
+                        val long_end=location!!.longitude
 
                         val delta_lat=(lat_end-lat_start)/(unknownPoints.count()+1)
                         val delta_long=(long_end-long_start)/(unknownPoints.count()+1)
@@ -43,9 +49,9 @@ suspend fun startFetchingInfo(
                         pointsDAO.insertAll(unknownPoints)
                         unknownPoints.clear()
                     }
-                    newPoint.latitude = location.latitude
-                    newPoint.longitude = location.longitude
-                    newPoint.timestamp=location.time
+                    newPoint.latitude = location!!.latitude
+                    newPoint.longitude = location!!.longitude
+                    newPoint.timestamp=location!!.time
                     points.add(newPoint)
                     pointsDAO.insertAll(newPoint)
                 }

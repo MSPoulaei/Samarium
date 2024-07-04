@@ -1,6 +1,5 @@
 package ir.tehranshomal.samarium.Views
 
-import android.location.Location
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
@@ -47,15 +46,8 @@ fun MainScreen(navController: NavController) {
     val preferenceManager = remember { PreferenceManager(context) }
     val locationService=LocationService(context)
     val scope = CoroutineScope(Job() + Dispatchers.Default)
-    var timeInterval by remember { mutableStateOf(preferenceManager.getInt("time_interval", 10)) }
+    val timeInterval by remember { mutableStateOf(preferenceManager.getInt("time_interval", 10)) }
     val pointsDAO=DbHelper().getDb(context).pointDAO()
-    val lastLocation = locationService.getLastLocation()
-    var location:Location?=null
-    lastLocation.addOnSuccessListener {
-        if (it != null){
-            location = it
-        }
-    }
     val points = remember {
         mutableStateListOf<Point>().apply {
             addAll(
@@ -73,9 +65,10 @@ fun MainScreen(navController: NavController) {
                             scope.launch {
                                 try {
                                     startFetchingInfo(
-                                        timeInterval, context, location,
+                                        timeInterval, context,
                                         points, pointsDAO,
-                                        mutableListOf<Point>()
+                                        mutableListOf<Point>(),
+                                        locationService
                                     )
                                 } catch (e: CancellationException) {
                                     println("Coroutine was cancelled")

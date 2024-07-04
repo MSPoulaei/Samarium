@@ -50,6 +50,11 @@ fun MapScreen(
                 last.latitude=myLocationOverlay.myLocation.latitude
                 last.longitude=myLocationOverlay.myLocation.longitude
             }
+            if(last.latitude.toInt() ==0 && last.longitude.toInt() ==0){
+                //Iran
+                last.latitude=32.4279
+                last.longitude=53.6880
+            }
         }
         map.controller.setCenter(GeoPoint(last.latitude, last.longitude))
 
