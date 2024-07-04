@@ -3,8 +3,7 @@ name: Release APK
 on:
   push:
     branches:
-      - master
-      - github-action-release
+      - release/v1.x
 
 jobs:
   build:
@@ -25,8 +24,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Build Release APK
-        run: ./gradlew assembleRelease
+      - name: Build Debug APK #Release had issues
+        run: ./gradlew assembleDebug
 
       - name: Create Release
         id: create_release
@@ -45,6 +44,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: app/build/outputs/apk/release/app-release-unsigned.apk
-          asset_name: app-release-unsigned.apk
+          asset_path: app/build/outputs/apk/debug/app-debug.apk
+          asset_name: app-debug.apk
           asset_content_type: application/vnd.android.package-archive
