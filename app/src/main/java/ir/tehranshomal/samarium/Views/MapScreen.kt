@@ -40,15 +40,24 @@ fun MapScreen(
     ) { map ->
 
         map.setTileSource(TileSourceFactory.MAPNIK)
-        map.controller.setZoom(5.0)
-        var last=points.lastOrNull()
-        if (last==null) last=Point()
-        map.controller.setCenter(GeoPoint(last.latitude, last.longitude))
-        map.setMultiTouchControls(true)
+        map.controller.setZoom(15.0)
         // Add my location overlay
         val myLocationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(context), map)
         myLocationOverlay.enableMyLocation()
         map.overlays.add(myLocationOverlay)
+
+        var last=points.lastOrNull()
+        if (last==null) {
+            last=Point()
+            val mylocation=myLocationOverlay.myLocation
+            if (mylocation!=null){
+                last.latitude=myLocationOverlay.myLocation.latitude
+                last.longitude=myLocationOverlay.myLocation.longitude
+            }
+        }
+        map.controller.setCenter(GeoPoint(last.latitude, last.longitude))
+
+        map.setMultiTouchControls(true)
 
         points.forEach { point ->
             val marker = Marker(mapView)

@@ -39,4 +39,7 @@ data class Point(
     var longitude :Double= .0,
     @ColumnInfo(name = "latitude")
     var latitude :Double=.0,
+
+    @ColumnInfo(name = "timestamp")
+    var timestamp :Long=0,
     )

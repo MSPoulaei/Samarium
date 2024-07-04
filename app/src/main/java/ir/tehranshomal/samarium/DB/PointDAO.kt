@@ -22,6 +22,9 @@ interface PointDAO {
     @Insert
     fun insertAll(vararg points: Point)
 
+    @Insert
+    fun insertAll(points: List<Point>)
+
     @Delete
     fun delete(point: Point)
 
