@@ -41,15 +41,15 @@ suspend fun startFetchingInfo(
                         }
                         points.addAll(unknownPoints)
                         pointsDAO.insertAll(unknownPoints)
+                        unknownPoints.clear()
                     }
                     newPoint.latitude = location.latitude
                     newPoint.longitude = location.longitude
+                    newPoint.timestamp=location.time
                     points.add(newPoint)
                     pointsDAO.insertAll(newPoint)
                 }
-            }else{
-                //do nothing because we don't have location
-            }
+            }else{ }
         }
         delay(timeInterval*1000L)
     }

@@ -158,6 +158,7 @@ import ir.tehranshomal.samarium.model.Point
 //            result+=("Registered: ${info.isRegistered}\n")
 //            result+=("Timestamp: ${info.timeStamp}\n")
 //            result+=("-------------------------\n")
+            point.timestamp=info.timeStamp
 
             return point
         }
