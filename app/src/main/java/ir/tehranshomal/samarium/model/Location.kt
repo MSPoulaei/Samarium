@@ -1,9 +1,10 @@
-package ir.tehranshomal.samarium
+package ir.tehranshomal.samarium.model
 
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import ir.tehranshomal.samarium.MainActivity
 
 class Location (activityArg: MainActivity) {
     private var fusedLocationProviderClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activityArg)

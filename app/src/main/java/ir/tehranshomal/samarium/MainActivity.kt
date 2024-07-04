@@ -28,9 +28,12 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import ir.tehranshomal.samarium.logic.CellInfoGetter
 import ir.tehranshomal.samarium.ui.theme.SamariumTheme
+import kotlinx.coroutines.*
 
 class MainActivity : ComponentActivity() {
 
+
+    var temp : String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -112,7 +115,7 @@ fun UpdateTextButton() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Helo $name!",
+        text = "Hello $name!",
         modifier = modifier
     )
 }
@@ -122,5 +125,25 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     SamariumTheme {
         Greeting("Android")
+    }
+}
+
+fun infoFetcher(){
+    val scope = CoroutineScope(Job() + Dispatchers.Default)
+    val job = scope.launch {
+        try {
+            performLongRunningTask()
+        } catch (e: CancellationException) {
+            println("Coroutine was cancelled")
+        }
+    }
+    Thread.sleep(8000)
+    job.cancel()
+}
+
+suspend fun performLongRunningTask() {
+    while (true){
+        delay(5000)
+        println("Data updated")
     }
 }
