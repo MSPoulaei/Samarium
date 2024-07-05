@@ -1,7 +1,9 @@
 package ir.tehranshomal.samarium.Views
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,7 +44,8 @@ fun AboutUsPage(navController: NavHostController) {
     ) { paddingValues ->
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+//            .weight(weight = 1f, fill = false)
             .padding(paddingValues)
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
