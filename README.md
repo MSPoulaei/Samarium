@@ -21,23 +21,18 @@ The retrieved information are displayed on the map in the end. The following tab
 # Proposed Features
 ## Permission validator
 The program needs some permissions such as **location access** to work flawlessly. Consequently, it asks for required permissions (if not granted) on reboot. 
-- location access permission
-<br/>
-![location access image](/images/loc-perm.jpg)
-<br/>
-- ask to activate GPS 
-<br/>
-![gps enable image](/images/gps-enable.jpg)
-<br/>
+- location access permission  
+![location access image](/images/loc-perm.jpg)  
+- ask to activate GPS  
+![gps enable image](/images/gps-enable.jpg)  
 ***Although the location access permission is required, the GPS service must be activated as well so the program can work well.***
 
 
 
 ## Customize configuration
 - Generally, the program updates information every 10 seconds. However, this configuration can be modified using setting panel. 
-- The internal database, that contains application information, can also be cleaned up for speed up purposes.
-<br/>
-![setting image](/images/setting.jpg)
+- The internal database, that contains application information, can also be cleaned up for speed up purposes.  
+![setting image](/images/setting.jpg)  
 ## Location estimation
 There are situations where the GPS provides no services. As a result, the location access service through GPS might be unavailable and, the user's current location has to be estimated in some ways. Samarium uses `Euclidean` method to estimate the exact location of the user. Basically, it uses the last known location before losing GPS connection and the first available location after reconnection of GPS to approximate the longitude and latitude of unreachable locations. Finally, it divides the unknown distance into equal sections to assign estimated longitude and latitude to them.
 The core functionality of this method is implemented in `/app/src/main/java/ir/tehranshomal/samarium/Services/InformationFetchService.kt` of application tree. 
