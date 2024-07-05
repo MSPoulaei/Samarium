@@ -14,6 +14,7 @@ fun Navigation() {
         NavHost(navController = navController, startDestination = "map") {
             composable("map") { MainScreen(navController) }
             composable("settings") { SettingsScreen(navController) }
+            composable("about-us") { AboutUsPage(navController) }
         }
     }
 }

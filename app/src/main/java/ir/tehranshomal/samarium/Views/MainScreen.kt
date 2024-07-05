@@ -100,6 +100,12 @@ fun MainScreen(navController: NavController) {
                         }, text = {
                             Text("Settings")
                         })
+                        DropdownMenuItem(onClick = {
+                            navController.navigate("about-us")
+                            showMenu = false
+                        }, text = {
+                            Text("About Us")
+                        })
                     }
                 }
             )
