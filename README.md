@@ -35,4 +35,13 @@ The program needs some permissions such as **location access** to work flawlessl
 ![setting image](/images/setting.jpg)  
 ## Location estimation
 There are situations where the GPS provides no services. As a result, the location access service through GPS might be unavailable and, the user's current location has to be estimated in some ways. Samarium uses `Euclidean` method to estimate the exact location of the user. Basically, it uses the last known location before losing GPS connection and the first available location after reconnection of GPS to approximate the longitude and latitude of unreachable locations. Finally, it divides the unknown distance into equal sections to assign estimated longitude and latitude to them.
-The core functionality of this method is implemented in `/app/src/main/java/ir/tehranshomal/samarium/Services/InformationFetchService.kt` of application tree. 
+The core functionality of this method is implemented in `/app/src/main/java/ir/tehranshomal/samarium/Services/InformationFetchService.kt` of application tree.
+
+## Live user's state
+- The user's current state is captured and shown on the map. The following pictures illustrate user's heat map in Tehran's streets.  
+
+| ![map 1](/images/map1.jpg) | ![Image 2](/images/map2.jpg) |
+|--------------------------------|--------------------------------|
+
+- The information corresponding to each captured point is displayed as follows  
+![details](/images/detail.jpg)
